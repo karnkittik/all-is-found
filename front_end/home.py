@@ -1,6 +1,8 @@
+from front_end.popup_message import PopupMessage
 from tkinter import *
 
 from .new_message import NewMessage
+from .popup_message import PopupMessage
 
 from network.network_manager import NetworkManger
 
@@ -26,21 +28,22 @@ class Home:
         self.home_body.pack()
 
         self.list_message = Listbox(self.home_body, width=50, font="8")
-        self.list_message.bind('<<ListboxSelect>>', lambda event: self.onclick_event()) 
+        self.list_message.bind('<<ListboxSelect>>', lambda event: self.show_message()) 
         self.list_message.pack(side=LEFT)
         self.scrollbar = Scrollbar(self.home_body, orient="vertical")
         self.scrollbar.config(command=self.list_message.yview)
         self.scrollbar.pack(side=LEFT, fill=Y)
         self.list_message.config(yscrollcommand=self.scrollbar.set)
         self.refresh_message()
-
     #onclick
-    def onclick_event(self):
+    def show_message(self):
         # curselection() returns a tuple of indexes selected in listbox
         selection = self.list_message.curselection()
         if len(selection) > 0:
-            print("Clicked indexes: {0}".format(selection))
-
+            index = selection[0]
+            top = Toplevel()
+            PopupMessage(top, self.messages[index])
+            # print("Clicked indexes: {0}".format(selection))
     #for moc
     def send_message(self, message):
         self.network_manager.send_message(message)

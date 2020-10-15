@@ -4,7 +4,6 @@ from .new_message import NewMessage
 
 from network.network_manager import NetworkManger
 
-
 class Home:
     def __init__(self, root_frame, messages):
         self.network_manager = NetworkManger()
@@ -27,13 +26,20 @@ class Home:
         self.home_body.pack()
 
         self.list_message = Listbox(self.home_body, width=50, font="8")
+        self.list_message.bind('<<ListboxSelect>>', lambda event: self.onclick_event()) 
         self.list_message.pack(side=LEFT)
-
         self.scrollbar = Scrollbar(self.home_body, orient="vertical")
         self.scrollbar.config(command=self.list_message.yview)
         self.scrollbar.pack(side=LEFT, fill=Y)
         self.list_message.config(yscrollcommand=self.scrollbar.set)
         self.refresh_message()
+
+    #onclick
+    def onclick_event(self):
+        # curselection() returns a tuple of indexes selected in listbox
+        selection = self.list_message.curselection()
+        if len(selection) > 0:
+            print("Clicked indexes: {0}".format(selection))
 
     #for moc
     def send_message(self, message):
@@ -55,6 +61,6 @@ class Home:
         #self.group_id = []
         self.list_message.delete(0, 'end')
         for (title, content, contact) in self.messages:
-            self.list_message.insert(END, "Title:" + title)
+            self.list_message.insert(END, "Title: " + title)
         # self.all_group.is_change_to_view = False
         self.home_body.update()

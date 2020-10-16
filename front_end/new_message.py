@@ -7,7 +7,7 @@ class NewMessage:
     def __init__(self, top, add_message):
         self.add_message = add_message
         self.top = top
-        self.top.geometry("600x400")
+        # self.top.geometry("600x400")
         self.top.title('New message')
 
         # root frame

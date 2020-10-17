@@ -13,21 +13,23 @@ class Home:
         self.messages = messages
 
         self.home_head = Frame(root_frame)
+        self.home_head.config(bg="skyblue")
         self.home_head.pack()
 
-        self.header = Label(self.home_head, text="Message Panel", font="10")
-        self.header.grid(row=0, column=0)
+        self.header = Label(self.home_head, text="Message Panel", bg="skyblue", font=("Helvetica", 14))
+        self.header.grid(row=0, column=0,padx=110, pady=5)
 
         self.new_message_btn = Button(self.home_head,
                                       text='New Message',
-                                      font="10",
+                                      font=("Helvetica", 12),
+                                      bg= "#FFBA31",
                                       command=self.open_new_message)
         self.new_message_btn.grid(row=0, column=1)
 
         self.home_body = Frame(root_frame)
         self.home_body.pack()
 
-        self.list_message = Listbox(self.home_body, width=50, font="8")
+        self.list_message = Listbox(self.home_body, width=50, font=("Helvetica", 12))
         self.list_message.bind('<<ListboxSelect>>', lambda event: self.show_message()) 
         self.list_message.pack(side=LEFT)
         self.scrollbar = Scrollbar(self.home_body, orient="vertical")

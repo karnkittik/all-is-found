@@ -14,6 +14,7 @@ class InitUi:
         self.root.title("All is found")
         self.frame1 = Frame()
         self.frame1.pack(side=LEFT, fill=Y)
+        self.frame1.config(bg="skyblue")
         Home(self.frame1, self.groups)
 
     def start(self):

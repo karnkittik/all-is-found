@@ -6,7 +6,7 @@ helv36 = ("Helvetica", 16)
 class PopupMessage:
     def __init__(self, top, message):
         self.top = top
-        self.message = message
+        self.message = message['message']
         self.top.geometry("600x250")
         self.top.config(bg="skyblue")
         self.top.title('Message')

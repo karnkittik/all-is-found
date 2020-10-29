@@ -6,10 +6,11 @@ from .home import Home
 
 class InitUi:
     def __init__(self):
-        self.groups = [[
+        self.groups = [
+            {'id':'52255155546d446fd45dv','ttl':1,'message':[
             "loss pen at 19th building 4", "pink pen mini heart at center",
-            "pick me up"
-        ]]  # title,content, contact
+            "pick me up"]}
+        ]  # title,content, contact
         self.root = Tk()
         self.root.title("All is found")
         self.frame1 = Frame()

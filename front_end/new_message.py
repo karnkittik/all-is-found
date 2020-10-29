@@ -63,5 +63,6 @@ class NewMessage:
         message.append(self.title_text.get("1.0", 'end-1c'))
         message.append(self.detail_text.get("1.0", 'end-1c'))
         message.append(self.contact_text.get("1.0", 'end-1c'))
-        self.add_message(message)
+        messages = {'id': '','ttl': 10, 'message': message}
+        self.add_message(messages)
         self.top.destroy()

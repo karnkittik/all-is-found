@@ -9,6 +9,7 @@ from network.network_manager import NetworkManger
 class Home:
     def __init__(self, root_frame, messages):
         self.network_manager = NetworkManger(self.add_message_from_another)
+        self.network_manager.receive_message()
         self.root_frame = root_frame
         self.messages = messages
         self.set_message = set() #keep id in 

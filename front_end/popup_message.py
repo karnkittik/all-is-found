@@ -32,7 +32,7 @@ class PopupMessage:
         self.title_label.pack()
         #self.title_label.config(bg="#3498DB")
         self.title_text = Text(self.title_section, height=1, width=25)
-        self.title_text.insert(INSERT, message[0])
+        self.title_text.insert(INSERT, self.message[0])
         self.title_text.configure(font=helv36)
         self.title_text.pack()
         # detail component
@@ -43,7 +43,7 @@ class PopupMessage:
         #self.detail_label.config(bg="#3498DB")
         self.detail_label.pack()
         self.detail_text = Text(self.detail_section, height=5, width=25)
-        self.detail_text.insert(INSERT, message[1])
+        self.detail_text.insert(INSERT, self.message[1])
         self.detail_text.configure(font=helv36)
         self.detail_text.pack()
         # contact component
@@ -54,6 +54,6 @@ class PopupMessage:
         self.contact_label.pack()
        # self.contact_label.config(bg="#3498DB")
         self.contact_text = Text(self.contact_section, height=7, width=25)
-        self.contact_text.insert(INSERT, message[2])
+        self.contact_text.insert(INSERT, self.message[2])
         self.contact_text.configure(font=helv36)
         self.contact_text.pack()

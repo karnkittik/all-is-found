@@ -7,18 +7,14 @@ import pickle
 from .new_message import NewMessage
 from .popup_message import PopupMessage
 
-from network.network_manager import NetworkManger
-
 
 class Home:
     def __init__(self, root_frame, messages):
-        # self.network_manager = NetworkManger()
-        # self.network_manager.receive_message()
         self.network_manager = None
         self.root_frame = root_frame
         self.messages = messages.get_messages()
         self.add_message_id = messages.add_message_id
-        self.set_message = set()  #keep id in
+        self.set_message = set()
         self.home_head = Frame(root_frame)
         self.home_head.config(bg="skyblue")
         self.home_head.pack()
@@ -50,27 +46,21 @@ class Home:
         self.scrollbar.pack(side=LEFT, fill=Y)
         self.list_message.config(yscrollcommand=self.scrollbar.set)
         self.refresh_message()
-        # self.message_id()
 
-    #onclick
     def show_message(self):
-        # curselection() returns a tuple of indexes selected in listbox
         selection = self.list_message.curselection()
         if len(selection) > 0:
             index = selection[0]
             top = Toplevel()
             PopupMessage(top, self.messages[index])
-            # print("Clicked indexes: {0}".format(selection))
 
-    #for moc
     def send_message(self, message):
         print("NETWORK SENT: ", end="")
         message["id"] = str(Ether().src) + str(int(time.time() // 1))
         self.add_message_id(message['id'])
-        # self.set_message.add(message['id'])
         print(message)
         a = IP()
-        a.dst = '169.254.255.255'  #169.254.150.255
+        a.dst = '169.254.255.255'
         a.ttl = 5
         del (a.getlayer(IP).chksum)
         b = ICMP()
@@ -80,20 +70,8 @@ class Home:
 
     def add_message(self, message):
         self.messages.append(message)
-        # self.set_message.add(message['id'])
         self.refresh_message()
         self.send_message(message)
-
-    # def add_message_from_another(self, message):
-    #     if (message['id'] in self.set_message):
-    #         return
-    #     self.messages.append(message)
-    #     self.set_message.add(message['id'])
-    #     self.refresh_message()
-    #     if (message['ttl'] <= 1):
-    #         return
-    #     message['ttl'] = message['ttl'] - 1
-    #     self.send_message(message)
 
     def open_new_message(self):
         top = Toplevel()
@@ -101,20 +79,9 @@ class Home:
         self.home_body.wait_window(top)
 
         self.refresh_message()
-        # print(self.all_group.get_alL_group_name())
-
-    # def message_id(self):
-    #     for i in self.messages:
-    #         self.set_message.add(i['id'])
 
     def refresh_message(self):
-        #self.group_id = []
-        print("oo")
         self.list_message.delete(0, 'end')
-        print("ll")
         for data in self.messages:
             self.list_message.insert(END, "Title: " + data['message'][0])
-        # self.all_group.is_change_to_view = False
-        print("nn")
         self.home_body.update()
-        print("mm")

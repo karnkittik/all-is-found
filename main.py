@@ -7,8 +7,6 @@ class Messages:
         self.messages = [{
             'id':
             '52255155546d446fd45dv',
-            'ttl':
-            1,
             'message': [
                 "loss pen at 19th building 4", "pink pen mini heart at center",
                 "pick me up"
@@ -36,7 +34,5 @@ if __name__ == "__main__":
     network_thread = NetworkManger(messages, ui.refresh_message)
     network_thread.daemon = True
     network_thread.start()
-
-    # ui.home.set_network(network_thread)
 
     ui.run()

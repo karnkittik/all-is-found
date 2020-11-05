@@ -16,9 +16,9 @@ class NetworkManger:
         sendp(Ether()/p/mess)
 
     def receive_message(self):
-        pkt = sniff(filter='icmp',prn=print_pkt)
+        pkt = sniff(filter='icmp',prn=self.print_pkt)
 
-    def print_pkt(pkt):
+    def print_pkt(self,pkt):
         try:
             a = pkt[Raw] #binary
             decode = pickle.loads(a)

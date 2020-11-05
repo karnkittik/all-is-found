@@ -1,22 +1,19 @@
 from tkinter import *
-import threading
+from threading import Thread
 
 from .home import Home
 
 
-class InitUi:
-    def __init__(self):
-        self.groups = [
-            {'id':'52255155546d446fd45dv','ttl':1,'message':[
-            "loss pen at 19th building 4", "pink pen mini heart at center",
-            "pick me up"]}
-        ]  # title,content, contact
+class InitUi(Thread):
+    def __init__(self, messages):
+        Thread.__init__(self)
         self.root = Tk()
         self.root.title("All is found")
         self.frame1 = Frame()
         self.frame1.pack(side=LEFT, fill=Y)
         self.frame1.config(bg="skyblue")
-        Home(self.frame1, self.groups)
+        self.home = Home(self.frame1, messages)
+        self.refresh_message = self.home.refresh_message
 
-    def start(self):
+    def run(self):
         self.root.mainloop()
